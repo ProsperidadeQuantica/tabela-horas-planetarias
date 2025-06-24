@@ -7,25 +7,25 @@
     <style>
         :root {
             --primary: #6a0dad; /* Roxo escuro do logo */
-            --secondary: #222264; /* Novo azul escuro (#2264) no lugar do roxo claro */
-            --accent: #FFD700; /* Mantido amarelo apenas para o Sol */
-            --light: #f3e5f5; /* Fundo mais escuro */
-            --dark: #4a148c; /* Preto */
-            --text: #eeeeee; /* Texto claro para contraste */
-            --text-light: #ffffff;
+            --secondary: #9c27b0; /* Roxo mais claro */
+            --accent: #ffeb3b; /* Amarelo do logo */
+            --light: #f3e5f5;
+            --dark: #4a148c;
+            --text: #333;
+            --text-light: #fff;
         }
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: var(--text);
-            background-color: var(--primary); /* Fundo preto */
+            background-color: var(--light);
             margin: 0;
             padding: 0;
         }
         
         header {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: var(--text-light);
             padding: 1rem;
             text-align: center;
@@ -40,7 +40,7 @@
         }
         
         .logo span {
-            color: var(--secondary); /* Azul escuro no lugar do amarelo */
+            color: var(--accent);
         }
         
         nav {
@@ -70,7 +70,7 @@
         }
         
         nav a:hover {
-            color: var(--secondary); /* Azul escuro no hover */
+            color: var(--accent);
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 4px;
         }
@@ -82,20 +82,19 @@
         }
         
         section {
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: white;
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            border: 1px solid #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         h1, h2, h3 {
-            color: var(--secondary); /* Azul escuro para títulos */
+            color: var(--primary);
         }
         
         h1 {
-            border-bottom: 2px solid var(--secondary); /* Azul escuro no lugar do amarelo */
+            border-bottom: 2px solid var(--accent);
             padding-bottom: 0.5rem;
             margin-top: 0;
         }
@@ -109,20 +108,20 @@
         th, td {
             padding: 0.75rem;
             text-align: left;
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid #ddd;
         }
         
         th {
-            background-color: var(--secondary); /* Azul escuro */
+            background-color: var(--primary);
             color: var(--text-light);
         }
         
         tr:nth-child(even) {
-            background-color: rgba(34, 34, 100, 0.1); /* Azul muito suave */
+            background-color: #f9f9f9;
         }
         
         tr:hover {
-            background-color: rgba(34, 34, 100, 0.3); /* Azul um pouco mais intenso */
+            background-color: #f1f1f1;
         }
         
         .planet-card {
@@ -134,16 +133,16 @@
         
         .planet {
             flex: 1 1 300px;
-            background: rgba(0, 0, 0, 0.6);
+            background: white;
             border-radius: 8px;
             padding: 1rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            border-top: 4px solid var(--secondary); /* Azul escuro */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--primary);
         }
         
         .planet h3 {
             margin-top: 0;
-            color: var(--secondary); /* Azul escuro */
+            color: var(--secondary);
         }
         
         .planet-color {
@@ -152,15 +151,6 @@
             margin-bottom: 0.5rem;
         }
         
-        /* Cores específicas para cada planeta */
-        .sol .planet-color { background-color: #FFD700; } /* Amarelo apenas para o Sol */
-        .lua .planet-color { background-color: #222264; }
-        .marte .planet-color { background-color: #222264; }
-        .mercurio .planet-color { background-color: #222264; }
-        .jupiter .planet-color { background-color: #222264; }
-        .venus .planet-color { background-color: #222264; }
-        .saturno .planet-color { background-color: #222264; }
-        
         .search-container {
             margin-bottom: 2rem;
         }
@@ -168,11 +158,9 @@
         #search {
             width: 100%;
             padding: 0.75rem;
-            border: 2px solid var(--secondary);
+            border: 2px solid var(--primary);
             border-radius: 4px;
             font-size: 1rem;
-            background-color: #111;
-            color: white;
         }
         
         footer {
@@ -475,8 +463,8 @@
             <p>Cada planeta possui correspondências com signos, elementos, cores, metais, cristais e outros atributos que podem ser utilizados em rituais e trabalhos mágicos.</p>
             
             <div class="planet-card">
-                <div class="planet sol">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FFD700;"></div>
                     <h3>Sol</h3>
                     <p><strong>Dia:</strong> Domingo</p>
                     <p><strong>Signo:</strong> Leão</p>
@@ -490,8 +478,8 @@
                     <p><strong>Mito:</strong> Apolo</p>
                 </div>
                 
-                <div class="planet lua">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #EE82EE;"></div>
                     <h3>Lua</h3>
                     <p><strong>Dia:</strong> Segunda</p>
                     <p><strong>Signo:</strong> Câncer</p>
@@ -505,8 +493,8 @@
                     <p><strong>Mito:</strong> Artêmis</p>
                 </div>
                 
-                <div class="planet marte">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FF0000;"></div>
                     <h3>Marte</h3>
                     <p><strong>Dia:</strong> Terça</p>
                     <p><strong>Signo:</strong> Áries e Escorpião</p>
@@ -520,8 +508,8 @@
                     <p><strong>Mito:</strong> Hermes</p>
                 </div>
                 
-                <div class="planet mercurio">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FFA500;"></div>
                     <h3>Mercúrio</h3>
                     <p><strong>Dia:</strong> Quarta</p>
                     <p><strong>Signo:</strong> Gêmeos e Virgem</p>
@@ -535,8 +523,8 @@
                     <p><strong>Mito:</strong> Afrodite</p>
                 </div>
                 
-                <div class="planet jupiter">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #4B0082;"></div>
                     <h3>Júpiter</h3>
                     <p><strong>Dia:</strong> Quinta</p>
                     <p><strong>Signo:</strong> Sagitário e Peixes</p>
@@ -550,8 +538,8 @@
                     <p><strong>Mito:</strong> Ares</p>
                 </div>
                 
-                <div class="planet venus">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #008000;"></div>
                     <h3>Vênus</h3>
                     <p><strong>Dia:</strong> Sexta</p>
                     <p><strong>Signo:</strong> Touro e Libra</p>
@@ -565,8 +553,8 @@
                     <p><strong>Mito:</strong> Zeus</p>
                 </div>
                 
-                <div class="planet saturno">
-                    <div class="planet-color"></div>
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #000000;"></div>
                     <h3>Saturno</h3>
                     <p><strong>Dia:</strong> Sábado</p>
                     <p><strong>Signo:</strong> Capricórnio e Aquário</p>
