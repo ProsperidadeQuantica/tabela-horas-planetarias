@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Horas Planetárias</title>
+    <style>
+        :root {
+            --primary: #6a0dad; /* Roxo escuro do logo */
+            --secondary: #9c27b0; /* Roxo mais claro */
+            --accent: #ffeb3b; /* Amarelo do logo */
+            --light: #f3e5f5;
+            --dark: #4a148c;
+            --text: #333;
+            --text-light: #fff;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 0.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 1rem;
+        }
+        
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1, h2, h3 {
+            color: var(--primary);
+        }
+        
+        h1 {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5rem;
+            margin-top: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: var(--text-light);
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .planet-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .planet {
+            flex: 1 1 300px;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .planet h3 {
+            margin-top: 0;
+            color: var(--secondary);
+        }
+        
+        .planet-color {
+            width: 100%;
+            height: 10px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .search-container {
+            margin-bottom: 2rem;
+        }
+        
+        #search {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--primary);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .planet {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Tabela <span>Horas Planetárias</span></div>
+        <p>"Para tudo há um tempo, e há um tempo para cada propósito debaixo do céu." - Eclesiastes</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#dias-planetarios">Dias Planetários</a></li>
+            <li><a href="#horas-planetarias">Horas Planetárias</a></li>
+            <li><a href="#correspondencias">Correspondências</a></li>
+            <li><a href="#lua-zodiaco">Lua no Zodíaco</a></li>
+            <li><a href="#signos-datas">Signos e Datas</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <section id="dias-planetarios">
+            <h1>Dias Planetários</h1>
+            <p>Muitas magias ficam mais poderosas e eficazes quando realizadas na hora e dia corretos! Cada dia da semana é regido por um planeta e cada hora tem sua respectiva regência planetária, sempre obedecendo o horário de nascimento do sol.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Regente</th>
+                        <th>Favorece e Ativa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Domingo</td>
+                        <td>Sol</td>
+                        <td>Espiritualidade, Cura e Desejos</td>
+                    </tr>
+                    <tr>
+                        <td>Segunda</td>
+                        <td>Lua</td>
+                        <td>Intuição e Criatividade</td>
+                    </tr>
+                    <tr>
+                        <td>Terça</td>
+                        <td>Marte</td>
+                        <td>Paixão, Agressividade e Discórdia</td>
+                    </tr>
+                    <tr>
+                        <td>Quarta</td>
+                        <td>Mercúrio</td>
+                        <td>Comunicações e Agilidade</td>
+                    </tr>
+                    <tr>
+                        <td>Quinta</td>
+                        <td>Júpiter</td>
+                        <td>Aventura e Exponstividade</td>
+                    </tr>
+                    <tr>
+                        <td>Sexta</td>
+                        <td>Vênus</td>
+                        <td>Dinheiro, Artes e Beleza</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado</td>
+                        <td>Saturno</td>
+                        <td>Responsabilidade</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="horas-planetarias">
+            <h1>Horas Planetárias</h1>
+            <p>A tabela abaixo mostra as regências planetárias para cada hora do dia, de acordo com o dia da semana. Lembre-se de ajustar uma hora a mais durante o horário de verão.</p>
+            
+            <div class="search-container">
+                <input type="text" id="search" placeholder="Pesquise por um planeta ou hora...">
+            </div>
+            
+            <table id="hours-table">
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Domingo</th>
+                        <th>Segunda</th>
+                        <th>Terça</th>
+                        <th>Quarta</th>
+                        <th>Quinta</th>
+                        <th>Sexta</th>
+                        <th>Sábado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>07/08</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JÚP</td>
+                        <td>VÊN</td>
+                        <td>SAT</td>
+                    </tr>
+                    <tr>
+                        <td>08/09</td>
+                        <td>VÊN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JÚP</td>
+                    </tr>
+                    <tr>
+                        <td>09/10</td>
+                        <td>MER</td>
+                        <td>JÚP</td>
+                        <td>VÊN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                    </tr>
+                    <tr>
+                        <td>10/11</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VÊN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                    </tr>
+                    <tr>
+                        <td>11/12</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                    </tr>
+                    <tr>
+                        <td>12/13</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                    </tr>
+                    <tr>
+                        <td>13/14</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                    </tr>
+                    <tr>
+                        <td>14/15</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                    </tr>
+                    <tr>
+                        <td>15/16</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                    </tr>
+                    <tr>
+                        <td>16/17</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                    </tr>
+                    <tr>
+                        <td>17/18</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                    </tr>
+                    <tr>
+                        <td>18/19</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                    </tr>
+                    <tr>
+                        <td>19/20</td>
+                        <td>JUP</td>
+                        <td>VEN</td>
+                        <td>SAT</td>
+                        <td>SOL</td>
+                        <td>LUA</td>
+                        <td>MAR</td>
+                        <td>MER</td>
+                    </tr>
+                    <tr>
+                        <td>20/21</td>
+                        <td>MAR</td>
+                        <td>SOL</td>
+                        <td>VEN</td>
+                        <td>MER</td>
+                        <td>LUA</td>
+                        <td>SAT</td>
+                        <td>JUP</td>
+                    </tr>
+                    <tr>
+                        <td>23/24</td>
+                        <td>MER</td>
+                        <td>LUA</td>
+                        <td>SAT</td>
+                        <td>JUP</td>
+                        <td>MAR</td>
+                        <td>SOL</td>
+                        <td>VEN</td>
+                    </tr>
+                    <tr>
+                        <td>02/03</td>
+                        <td>JUP</td>
+                        <td>MAR</td>
+                        <td>SOL</td>
+                        <td>VEN</td>
+                        <td>MER</td>
+                        <td>LUA</td>
+                        <td>SAT</td>
+                    </tr>
+                    <tr>
+                        <td>04/05</td>
+                        <td>SOL</td>
+                        <td>VEN</td>
+                        <td>MER</td>
+                        <td>SAT</td>
+                        <td>JUP</td>
+                        <td>SOL</td>
+                        <td>VEN</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="important-note">
+                <h3>IMPORTANTE</h3>
+                <p>Para o horário de verão deve-se acrescentar uma hora na Tabela das Horas Planetárias.</p>
+                <p>Exemplo: Horário do Sol na tabela normal: das 07 as 08 hs da manhã. Horário do Sol no horário de verão vai ser das 08 as 09 hs da manhã.</p>
+            </div>
+        </section>
+        
+        <section id="correspondencias">
+            <h1>Tabela de Correspondências</h1>
+            <p>Cada planeta possui correspondências com signos, elementos, cores, metais, cristais e outros atributos que podem ser utilizados em rituais e trabalhos mágicos.</p>
+            
+            <div class="planet-card">
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FFD700;"></div>
+                    <h3>Sol</h3>
+                    <p><strong>Dia:</strong> Domingo</p>
+                    <p><strong>Signo:</strong> Leão</p>
+                    <p><strong>Elemento:</strong> Fogo</p>
+                    <p><strong>Incenso:</strong> Olíbano</p>
+                    <p><strong>Cor:</strong> Amarela</p>
+                    <p><strong>Metal:</strong> Ouro</p>
+                    <p><strong>Cristal:</strong> Diamante</p>
+                    <p><strong>Planta:</strong> Girassol</p>
+                    <p><strong>Órgão:</strong> Coração</p>
+                    <p><strong>Mito:</strong> Apolo</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #EE82EE;"></div>
+                    <h3>Lua</h3>
+                    <p><strong>Dia:</strong> Segunda</p>
+                    <p><strong>Signo:</strong> Câncer</p>
+                    <p><strong>Elemento:</strong> Água</p>
+                    <p><strong>Incenso:</strong> Jasmin</p>
+                    <p><strong>Cor:</strong> Violeta</p>
+                    <p><strong>Metal:</strong> Prata</p>
+                    <p><strong>Cristal:</strong> Moon stone</p>
+                    <p><strong>Planta:</strong> Artemísia</p>
+                    <p><strong>Órgão:</strong> Seios/tórax</p>
+                    <p><strong>Mito:</strong> Artêmis</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FF0000;"></div>
+                    <h3>Marte</h3>
+                    <p><strong>Dia:</strong> Terça</p>
+                    <p><strong>Signo:</strong> Áries e Escorpião</p>
+                    <p><strong>Elemento:</strong> Fogo</p>
+                    <p><strong>Incenso:</strong> Pinho</p>
+                    <p><strong>Cor:</strong> Vermelha</p>
+                    <p><strong>Metal:</strong> Ferro</p>
+                    <p><strong>Cristal:</strong> Rubi</p>
+                    <p><strong>Planta:</strong> Tabaco</p>
+                    <p><strong>Órgão:</strong> Braços</p>
+                    <p><strong>Mito:</strong> Hermes</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #FFA500;"></div>
+                    <h3>Mercúrio</h3>
+                    <p><strong>Dia:</strong> Quarta</p>
+                    <p><strong>Signo:</strong> Gêmeos e Virgem</p>
+                    <p><strong>Elemento:</strong> Ar /terra</p>
+                    <p><strong>Incenso:</strong> Orquídea</p>
+                    <p><strong>Cor:</strong> Laranja</p>
+                    <p><strong>Metal:</strong> Mercúrio</p>
+                    <p><strong>Cristal:</strong> Citrino</p>
+                    <p><strong>Planta:</strong> Lima</p>
+                    <p><strong>Órgão:</strong> Gônadas rins</p>
+                    <p><strong>Mito:</strong> Afrodite</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #4B0082;"></div>
+                    <h3>Júpiter</h3>
+                    <p><strong>Dia:</strong> Quinta</p>
+                    <p><strong>Signo:</strong> Sagitário e Peixes</p>
+                    <p><strong>Elemento:</strong> Fogo/água</p>
+                    <p><strong>Incenso:</strong> Cedro</p>
+                    <p><strong>Cor:</strong> Azul/Roxo</p>
+                    <p><strong>Metal:</strong> Estanho</p>
+                    <p><strong>Cristal:</strong> Sodalita</p>
+                    <p><strong>Planta:</strong> Sabugueiro</p>
+                    <p><strong>Órgão:</strong> Cabeça</p>
+                    <p><strong>Mito:</strong> Ares</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #008000;"></div>
+                    <h3>Vênus</h3>
+                    <p><strong>Dia:</strong> Sexta</p>
+                    <p><strong>Signo:</strong> Touro e Libra</p>
+                    <p><strong>Elemento:</strong> Terra/ar</p>
+                    <p><strong>Incenso:</strong> Rosas</p>
+                    <p><strong>Cor:</strong> Verde</p>
+                    <p><strong>Metal:</strong> Cobre</p>
+                    <p><strong>Cristal:</strong> Esmeralda</p>
+                    <p><strong>Planta:</strong> Sândalo</p>
+                    <p><strong>Órgão:</strong> Fígado</p>
+                    <p><strong>Mito:</strong> Zeus</p>
+                </div>
+                
+                <div class="planet">
+                    <div class="planet-color" style="background-color: #000000;"></div>
+                    <h3>Saturno</h3>
+                    <p><strong>Dia:</strong> Sábado</p>
+                    <p><strong>Signo:</strong> Capricórnio e Aquário</p>
+                    <p><strong>Elemento:</strong> Terra</p>
+                    <p><strong>Incenso:</strong> Mirra</p>
+                    <p><strong>Cor:</strong> Índigo/preto</p>
+                    <p><strong>Metal:</strong> Chumbo</p>
+                    <p><strong>Cristal:</strong> Ônix safira</p>
+                    <p><strong>Planta:</strong> Carvalho</p>
+                    <p><strong>Órgão:</strong> Joelhos</p>
+                    <p><strong>Mito:</strong> Kronus</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="lua-zodiaco">
+            <h1>A Lua no Zodíaco</h1>
+            <p>Tudo o que se faz pelo bem estar de certas regiões do corpo regidos pelo signo em que a Lua se encontra é duplamente significativo e faz duplamente bem, da mesma forma que tudo o que atrapalha e pesa sobre as regiões do corpo regidos pelo signo onde se encontra a Lua naqueles momentos, age de forma duplamente desfavorável e até prejudicial.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Signo</th>
+                        <th>Rege</th>
+                        <th>Sistema</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ÁRIES</td>
+                        <td>CABEÇA, CÉREBRO, OLHOS</td>
+                        <td>SENTIDOS</td>
+                    </tr>
+                    <tr>
+                        <td>TOURO</td>
+                        <td>GARGANTA, VOZ, NUCA, AMÍGDALAS, ORELHAS</td>
+                        <td>CIRCULAÇÃO SANGUÍNEA</td>
+                    </tr>
+                    <tr>
+                        <td>GÊMEOS</td>
+                        <td>OMBROS, BRAÇOS, MÃOS, PULMÕES</td>
+                        <td>GLANDULAR</td>
+                    </tr>
+                    <tr>
+                        <td>CÂNCER</td>
+                        <td>PEITO, PULMÕES, ESTÔMAGO, FÍGADO, BÍLIS</td>
+                        <td>NERVOSO</td>
+                    </tr>
+                    <tr>
+                        <td>LEÃO</td>
+                        <td>CORAÇÃO, COSTAS, CIRCULAÇÃO DO SANGUE, AORTA</td>
+                        <td>SENTIDOS</td>
+                    </tr>
+                    <tr>
+                        <td>VIRGEM</td>
+                        <td>INTESTINOS, ESTÔMAGO, NERVOS, BAÇO, PÂNCREAS</td>
+                        <td>CIRCULAÇÃO SANGUÍNEA</td>
+                    </tr>
+                    <tr>
+                        <td>LIBRA</td>
+                        <td>QUADRIL, RINS, BEXIGA</td>
+                        <td>GLANDULAR</td>
+                    </tr>
+                    <tr>
+                        <td>ESCORPIÃO</td>
+                        <td>ÓRGÃOS SEXUAIS</td>
+                        <td>NERVOSO</td>
+                    </tr>
+                    <tr>
+                        <td>SAGITÁRIO</td>
+                        <td>COXA, VEIAS</td>
+                        <td>SENTIDOS</td>
+                    </tr>
+                    <tr>
+                        <td>CAPRICÓRNIO</td>
+                        <td>JOELHO, OSSOS, JUNTAS, PELE</td>
+                        <td>CIRCULAÇÃO SANGUÍNEA</td>
+                    </tr>
+                    <tr>
+                        <td>AQUÁRIO</td>
+                        <td>COXA, VEIAS</td>
+                        <td>GLANDULAR</td>
+                    </tr>
+                    <tr>
+                        <td>PEIXES</td>
+                        <td>PÉS, DEDOS DOS PÉS</td>
+                        <td>NERVOSO</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        
+        <section id="signos-datas">
+            <h1>Signos do Zodíaco e Datas</h1>
+            <p>As datas abaixo marcam a entrada do Sol nos doze signos do Zodíaco. São, em geral bastante exatas, embora haja alguma ligeira variação.</p>
+            
+            <div class="planet-card">
+                <div class="planet">
+                    <h3>Áries</h3>
+                    <p><strong>Datas:</strong> 21 de março a 20 de abril</p>
+                    <p><strong>Planeta Regente:</strong> Marte</p>
+                    <p><strong>Cores:</strong> Vermelho vivo, escarlate e carmesim</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Touro</h3>
+                    <p><strong>Datas:</strong> 21 de abril a 21 de maio</p>
+                    <p><strong>Planeta Regente:</strong> Vênus</p>
+                    <p><strong>Cores:</strong> Verde brilhante, verde-maça, verde oliva</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Gêmeos</h3>
+                    <p><strong>Datas:</strong> 22 de maio a 21 de junho</p>
+                    <p><strong>Planeta Regente:</strong> Mercúrio</p>
+                    <p><strong>Cores:</strong> Amarelo brilhante, laranja</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Câncer</h3>
+                    <p><strong>Datas:</strong> 22 de junho a 22 de julho</p>
+                    <p><strong>Planeta Regente:</strong> Lua</p>
+                    <p><strong>Cores:</strong> Branco, Prata, madrepérola</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Leão</h3>
+                    <p><strong>Datas:</strong> 23 de julho a 23 de agosto</p>
+                    <p><strong>Planeta Regente:</strong> Sol</p>
+                    <p><strong>Cores:</strong> Ouro, laranja, dourado</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Virgem</h3>
+                    <p><strong>Datas:</strong> 24 de agosto a 23 de setembro</p>
+                    <p><strong>Planeta Regente:</strong> Mercúrio</p>
+                    <p><strong>Cores:</strong> Marrons claros, dourados, verdes médios</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Libra</h3>
+                    <p><strong>Datas:</strong> 24 de setembro a 23 de outubro</p>
+                    <p><strong>Planeta Regente:</strong> Vênus</p>
+                    <p><strong>Cores:</strong> Róseo, rosa forte, azul-rei brilhante</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Escorpião</h3>
+                    <p><strong>Datas:</strong> 24 de outubro a 22 de novembro</p>
+                    <p><strong>Planeta Regente:</strong> Marte; Sub-Regente: Plutão</p>
+                    <p><strong>Cores:</strong> Vermelhos e carmesim escuros, cinza-prateado</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Sagitário</h3>
+                    <p><strong>Datas:</strong> 23 de novembro a 21 de dezembro</p>
+                    <p><strong>Planeta Regente:</strong> Júpiter</p>
+                    <p><strong>Cores:</strong> Púrpura, lilás rosado, lavanda</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Capricórnio</h3>
+                    <p><strong>Datas:</strong> 22 de dezembro a 20 de janeiro</p>
+                    <p><strong>Planeta Regente:</strong> Saturno</p>
+                    <p><strong>Cores:</strong> Verdes escuros, marrom e cinza escuros</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Aquário</h3>
+                    <p><strong>Datas:</strong> 21 de janeiro a 19 de fevereiro</p>
+                    <p><strong>Planeta Regente:</strong> Saturno e Sub-Regente: Urano</p>
+                    <p><strong>Cores:</strong> Azul-elétrico, tonalidades multicoloridas</p>
+                </div>
+                
+                <div class="planet">
+                    <h3>Peixes</h3>
+                    <p><strong>Datas:</strong> 20 de fevereiro a 20 de março</p>
+                    <p><strong>Planeta Regente:</strong> Júpiter e Sub-Regente: Netuno</p>
+                    <p><strong>Cores:</strong> Verde-mar, lilás e lavanda pálidos</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>Tabela Horas Planetárias - Todos os direitos reservados</p>
+    </footer>
+    
+    <script>
+        // Função de busca na tabela de horas planetárias
+        document.getElementById('search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#hours-table tbody tr');
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let found = false;
+                
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+                
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        
+        // Rolagem suave para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
